@@ -9,6 +9,7 @@ abstract class Routes {
   static const NAVIGATION_VIEW = _Paths.NAVIGATION_VIEW;
   static const PROFILE = _Paths.PROFILE;
   static const DOCTORS = _Paths.DOCTORS;
+  static const APPOINTMENTS = _Paths.APPOINTMENTS;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const NAVIGATION_VIEW = '/navigation';
   static const PROFILE = '/profile';
   static const DOCTORS = '/doctors';
+  static const APPOINTMENTS = '/appointments';
 }

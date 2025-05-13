@@ -20,9 +20,10 @@ class HomeView extends GetView<HomeController> {
               DiscountBanner(),
               // Categories(),
               SpecialOffers(),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
+              IncomingAppointments(),
+              SizedBox(height: 10),
               PopularProducts(),
-              SizedBox(height: 20),
             ],
           ),
         ),
@@ -46,12 +47,7 @@ class HomeHeader extends StatelessWidget {
           const SizedBox(width: 16),
           Row(
             children: [
-              IconBtnWithCounter(
-                // numOfitem: 3,
-                svgSrc: cartIcon,
-                press: () {},
-              ),
-              const SizedBox(width: 8),
+
               IconBtnWithCounter(svgSrc: bellIcon, numOfitem: 3, press: () {}),
             ],
           ),
@@ -364,43 +360,57 @@ class PromoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 20),
+      margin: const EdgeInsets.only(left: 20, right: 10),
       width: MediaQuery.of(context).size.width * 0.8,
       height: 150,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        gradient: const LinearGradient(
-          colors: [Color(0xff193e9d), Color(0xff190277)],
+        borderRadius: BorderRadius.circular(20),
+        image: const DecorationImage(
+          image: AssetImage("assets/images/consult.jpg"),
+          fit: BoxFit.cover,
         ),
       ),
-      child: Stack(
-        children: [
-          Opacity(
-            opacity: .7,
-            child: Image.asset(
-              "assets/images/consult.jpg",
-              fit: BoxFit.cover,
-            ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient(
+            colors: [
+              Colors.black.withOpacity(0.6),
+              Colors.transparent,
+            ],
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
           ),
-          const Align(
-            alignment: Alignment.topRight,
-            child: Padding(
-              padding: EdgeInsets.all(25.0),
-              child: Text(
-                "Want some\nicecream?",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
+        ),
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Spacer(),
+            Text(
+              "Feeling unwell?\nTalk to a doctor now!",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                height: 1.3,
               ),
             ),
-          ),
-        ],
+            SizedBox(height: 8),
+            Text(
+              "Consultation in minutes",
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({Key? key, required this.title, required this.press})
@@ -432,6 +442,136 @@ class SectionTitle extends StatelessWidget {
   }
 }
 
+class IncomingAppointments extends StatelessWidget {
+  const IncomingAppointments({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> appointments = List.generate(6, (index) {
+      return {
+        "doctorName": "Dr. Serena Gomez",
+        "specialty": "Cardiologist",
+        "image": "assets/images/doctor_ad.png",
+        "date": DateTime.now().add(Duration(days: index)),
+        "status": "Confirmed",
+      };
+    });
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              "Incoming Appointments",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: GridView.builder(
+              itemCount: appointments.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 0.75,
+              ),
+              itemBuilder: (context, index) {
+                final appt = appointments[index];
+                final date = appt['date'] as DateTime;
+                final formattedDate = "${date.day}/${date.month}/${date.year}";
+                final formattedTime = "${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}";
+
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        blurRadius: 6,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Icon(Icons.cancel, color: Colors.redAccent, size: 20),
+                      ),
+                      Center(
+                        child: CircleAvatar(
+                          radius: 28,
+                          backgroundImage: AssetImage(appt['image']),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        appt['doctorName'],
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      Text(
+                        appt['specialty'],
+                        style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                      ),
+                      const SizedBox(height: 6),
+                      Row(
+                        children: [
+                          const Icon(Icons.calendar_today, size: 14, color: Colors.blue),
+                          const SizedBox(width: 4),
+                          Text(
+                            formattedDate,
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          const Icon(Icons.access_time, size: 14, color: Colors.deepOrange),
+                          const SizedBox(width: 4),
+                          Text(
+                            formattedTime,
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.green.shade100,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          appt['status'],
+                          style: const TextStyle(
+                            color: Colors.green,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class PopularProducts extends StatelessWidget {
   const PopularProducts({super.key});
 
@@ -450,92 +590,92 @@ class PopularProducts extends StatelessWidget {
               ...List.generate(demoProducts.length, (index) {
                 if (demoProducts[index].isPopular) {
                   return Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 30),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        color: Colors.white.withOpacity(0.5),
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 30),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white.withOpacity(0.5),
 
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                           children: [
-                             Column(
-                               crossAxisAlignment: CrossAxisAlignment.start,
-                               children: [
-                                 Text(
-                                   "Dr. Serena Gomez",
-                                   style: TextStyle(
-                                     fontSize: 22,
-                                      fontWeight: FontWeight.w500,
-                                   ),
-                                 ),
-                                 Text(
-                                   "Medicine Specialist",
-                                   style: TextStyle(
-                                     fontSize: 18,
-                                     fontWeight: FontWeight.w400,
-                                   ),
-                                 ),
-                               ],
-                             ),
-                              Row(children: [
-                                ...List.generate(5, (index) => const Icon(Icons.star, color: Colors.amber, size: 16,)),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Dr. Serena Gomez",
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Medicine Specialist",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(children: [
+                                  ...List.generate(5, (index) => const Icon(Icons.star, color: Colors.amber, size: 16,)),
 
-                              ],),
-                              const SizedBox(height: 10),
-                             Column(
-                               crossAxisAlignment: CrossAxisAlignment.start,
-                               children: [
-                                 Text(
-                                   "Experience",
-                                   style: TextStyle(
-                                     fontSize: 18,
-                                     fontWeight: FontWeight.w400,
-                                   ),
-                                 ),
-                                 Text(
-                                   "5 Years",
-                                   style: TextStyle(
-                                     fontSize: 20,
-                                     fontWeight: FontWeight.w500,
-                                   ),
-                                 ),
-                               ],
-                             ),
-                              const SizedBox(height: 10),
-                             Column(
-                               crossAxisAlignment: CrossAxisAlignment.start,
-                               children: [
-                                 Text(
-                                   "Patients",
-                                   style: TextStyle(
-                                     fontSize: 18,
-                                     fontWeight: FontWeight.w400,
-                                   ),
-                                 ),
-                                 Text(
-                                   "1.08K",
-                                   style: TextStyle(
-                                     fontSize: 20,
-                                     fontWeight: FontWeight.w500,
-                                   ),
-                                 ),
-                               ],
-                             ),
-                           ],
-                          ),
-                          Image.asset("assets/images/doctor_ad.png",
-                            height: 120,
-                            width: 120,
-                          ),
-                        ],
-                      ),
-                    )
+                                ],),
+                                const SizedBox(height: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Experience",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    Text(
+                                      "5 Years",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Patients",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    Text(
+                                      "1.08K",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Image.asset("assets/images/doctor_ad.png",
+                              height: 120,
+                              width: 120,
+                            ),
+                          ],
+                        ),
+                      )
                   );
                 }
 
@@ -549,6 +689,7 @@ class PopularProducts extends StatelessWidget {
     );
   }
 }
+
 
 class ProductCard extends StatelessWidget {
   const ProductCard({

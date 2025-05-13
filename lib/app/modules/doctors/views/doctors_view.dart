@@ -15,12 +15,25 @@ class DoctorsView extends GetView<DoctorsController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Give option to set date and time
               const SizedBox(height: 50),
               const Text(
                 "Available \nSpecialist",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 250,
+                width: double.infinity,
+                child: CalendarDatePicker(selectableDayPredicate: (date) => true,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime(2027),
+                  onDateChanged: (date) {
+                    // Handle date change
+                  },
                 ),
               ),
               Padding(

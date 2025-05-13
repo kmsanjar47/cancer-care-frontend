@@ -4,6 +4,8 @@ import 'package:cancer_care_app/app/modules/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../appointments/views/appointments_view.dart';
+
 const Color inActiveIconColor = Color(0xFFB6B6B6);
 
 class NavigationView extends StatefulWidget {
@@ -25,9 +27,7 @@ class _NavigationViewState extends State<NavigationView> {
   final pages = [
     const HomeView(),
     const DoctorsView(),
-    const Center(
-      child: Text("Cart"),
-    ),
+    const AppointmentsView(),
     const ProfileView(),
   ];
 

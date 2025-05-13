@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/appointments/bindings/appointments_binding.dart';
+import '../modules/appointments/views/appointments_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/sign_in_view.dart';
 import '../modules/auth/views/sign_up_view.dart';
@@ -49,6 +51,11 @@ class AppPages {
       name: _Paths.DOCTORS,
       page: () => const DoctorsView(),
       binding: DoctorsBinding(),
+    ),
+    GetPage(
+      name: _Paths.APPOINTMENTS,
+      page: () => const AppointmentsView(),
+      binding: AppointmentsBinding(),
     ),
   ];
 }
