@@ -1,3 +1,4 @@
+import 'package:cancer_care_app/app/modules/doctors/views/doctors_view.dart';
 import 'package:cancer_care_app/app/modules/home/views/home_view.dart';
 import 'package:cancer_care_app/app/modules/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +24,7 @@ class _NavigationViewState extends State<NavigationView> {
 
   final pages = [
     const HomeView(),
-    const Center(
-      child: Text("Fav"),
-    ),
+    const DoctorsView(),
     const Center(
       child: Text("Cart"),
     ),

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/sign_in_view.dart';
 import '../modules/auth/views/sign_up_view.dart';
+import '../modules/doctors/bindings/doctors_binding.dart';
+import '../modules/doctors/views/doctors_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/navigation/bindings/navigation_binding.dart';
@@ -42,6 +44,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.DOCTORS,
+      page: () => const DoctorsView(),
+      binding: DoctorsBinding(),
     ),
   ];
 }

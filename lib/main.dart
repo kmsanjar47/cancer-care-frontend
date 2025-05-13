@@ -11,6 +11,20 @@ void main() {
       title: "Cancer Care",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: const Color(0xFFF9F8FD),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFFF9F8FD),
+          elevation: 0,
+          iconTheme: IconThemeData(color: Colors.black),
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     ),
   );
 }

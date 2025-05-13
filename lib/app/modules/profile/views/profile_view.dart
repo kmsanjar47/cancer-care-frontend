@@ -20,27 +20,27 @@ class ProfileView extends StatelessWidget {
             const SizedBox(height: 20),
             ProfileMenu(
               text: "My Account",
-              icon: "assets/icons/User Icon.svg",
+              icon: Icons.person,
               press: () => {},
             ),
             ProfileMenu(
               text: "Notifications",
-              icon: "assets/icons/Bell.svg",
+              icon: Icons.notifications,
               press: () {},
             ),
             ProfileMenu(
               text: "Settings",
-              icon: "assets/icons/Settings.svg",
+              icon: Icons.settings,
               press: () {},
             ),
             ProfileMenu(
               text: "Help Center",
-              icon: "assets/icons/Question mark.svg",
+              icon: Icons.help_outline,
               press: () {},
             ),
             ProfileMenu(
               text: "Log Out",
-              icon: "assets/icons/Log out.svg",
+              icon: Icons.login_outlined,
               press: () {},
             ),
           ],
@@ -102,7 +102,8 @@ class ProfileMenu extends StatelessWidget {
     this.press,
   }) : super(key: key);
 
-  final String text, icon;
+  final String text;
+  final IconData icon;
   final VoidCallback? press;
 
   @override
@@ -120,11 +121,9 @@ class ProfileMenu extends StatelessWidget {
         onPressed: press,
         child: Row(
           children: [
-            SvgPicture.asset(
+            Icon(
               icon,
-              colorFilter:
-              const ColorFilter.mode(Color(0xFFFF7643), BlendMode.srcIn),
-              width: 22,
+              size: 22,
             ),
             const SizedBox(width: 20),
             Expanded(
