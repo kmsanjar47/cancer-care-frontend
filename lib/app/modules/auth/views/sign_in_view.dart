@@ -18,9 +18,18 @@ class SignInView extends GetView<AuthController> {
               child: Column(
                 children: [
                   SizedBox(height: constraints.maxHeight * 0.1),
-                  Image.network(
-                    "https://i.postimg.cc/nz0YBQcH/Logo-light.png",
-                    height: 100,
+                  Column(
+                    children: [
+                      Image.asset(
+                        "assets/images/breast-cancer.png",
+                        height: 100,
+                      ),
+                      const SizedBox(height: 8.0),
+                      Text(
+                        "Cancer Care",
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
+                    ],
                   ),
                   SizedBox(height: constraints.maxHeight * 0.1),
                   Text(
@@ -39,7 +48,7 @@ class SignInView extends GetView<AuthController> {
                           decoration: const InputDecoration(
                             hintText: 'Phone',
                             filled: true,
-                            fillColor: Color(0xFFF5FCF9),
+                            fillColor: Color(0x1D4A3298),
                             contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 16.0 * 1.5, vertical: 16.0),
                             border: const OutlineInputBorder(
@@ -60,7 +69,7 @@ class SignInView extends GetView<AuthController> {
                             decoration: const InputDecoration(
                               hintText: 'Password',
                               filled: true,
-                              fillColor: Color(0xFFF5FCF9),
+                              fillColor: Color(0x1D4A3298),
                               contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 16.0 * 1.5, vertical: 16.0),
                               border: OutlineInputBorder(
@@ -84,7 +93,7 @@ class SignInView extends GetView<AuthController> {
                           },
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
-                            backgroundColor: const Color(0xFF00BF6D),
+                            backgroundColor: const Color(0xFF4A3298),
                             foregroundColor: Colors.white,
                             minimumSize: const Size(double.infinity, 48),
                             shape: const StadiumBorder(),
@@ -118,7 +127,7 @@ class SignInView extends GetView<AuthController> {
                               children: [
                                 TextSpan(
                                   text: "Sign Up",
-                                  style: TextStyle(color: Color(0xFF00BF6D)),
+                                  style: TextStyle(color: Color(0xFF4A3298)),
                                 ),
                               ],
                             ),

@@ -9,20 +9,25 @@ class AppointmentsView extends GetView<AppointmentsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // Listview of appointments with the option to cancel
-        children: [
-          const SizedBox(height: 50),
-          const Text(
-            "My Appointments",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          // Listview of appointments with the option to cancel
+          children: [
+            const SizedBox(height: 50),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: const Text(
+                "My Appointments",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               itemCount: 10,
               itemBuilder: (context, index) {
                 final appointmentDate = DateTime.now().add(Duration(days: index));
@@ -93,7 +98,7 @@ class AppointmentsView extends GetView<AppointmentsController> {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: const Text(
-                                    "Confirmed",
+                                    "Serial No: 12",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.green,
@@ -130,9 +135,9 @@ class AppointmentsView extends GetView<AppointmentsController> {
                 );
               },
             ),
-          ),
 
-        ],
+          ],
+        ),
       )
     );
   }

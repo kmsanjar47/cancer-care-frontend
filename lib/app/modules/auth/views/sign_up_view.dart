@@ -18,9 +18,18 @@ class SignUpView extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: constraints.maxHeight * 0.08),
-                Image.network(
-                  "https://i.postimg.cc/nz0YBQcH/Logo-light.png",
-                  height: 100,
+                Column(
+                  children: [
+                    Image.asset(
+                      "assets/images/breast-cancer.png",
+                      height: 100,
+                    ),
+                    const SizedBox(height: 8.0),
+                    Text(
+                      "Cancer Care",
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                  ],
                 ),
                 SizedBox(height: constraints.maxHeight * 0.08),
                 Text(
@@ -39,7 +48,6 @@ class SignUpView extends StatelessWidget {
                         decoration: const InputDecoration(
                           hintText: 'Full name',
                           filled: true,
-                          fillColor: Color(0xFFF5FCF9),
                           contentPadding: EdgeInsets.symmetric(
                               horizontal: 16.0 * 1.5, vertical: 16.0),
                           border: OutlineInputBorder(
@@ -56,7 +64,6 @@ class SignUpView extends StatelessWidget {
                         decoration: const InputDecoration(
                           hintText: 'Phone',
                           filled: true,
-                          fillColor: Color(0xFFF5FCF9),
                           contentPadding: EdgeInsets.symmetric(
                               horizontal: 16.0 * 1.5, vertical: 16.0),
                           border: OutlineInputBorder(
@@ -74,7 +81,6 @@ class SignUpView extends StatelessWidget {
                         decoration: const InputDecoration(
                           hintText: 'Email',
                           filled: true,
-                          fillColor: Color(0xFFF5FCF9),
                           contentPadding: EdgeInsets.symmetric(
                               horizontal: 16.0 * 1.5, vertical: 16.0),
                           border: OutlineInputBorder(
@@ -93,7 +99,6 @@ class SignUpView extends StatelessWidget {
                           decoration: const InputDecoration(
                             hintText: 'Password',
                             filled: true,
-                            fillColor: Color(0xFFF5FCF9),
                             contentPadding: EdgeInsets.symmetric(
                                 horizontal: 16.0 * 1.5, vertical: 16.0),
                             border: OutlineInputBorder(
@@ -119,7 +124,7 @@ class SignUpView extends StatelessWidget {
                           },
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
-                            backgroundColor: const Color(0xFF00BF6D),
+                            backgroundColor: const Color(0xFF4A3298),
                             foregroundColor: Colors.white,
                             minimumSize: const Size(double.infinity, 48),
                             shape: const StadiumBorder(),
@@ -137,7 +142,7 @@ class SignUpView extends StatelessWidget {
                             children: [
                               TextSpan(
                                 text: "Sign in",
-                                style: TextStyle(color: Color(0xFF00BF6D)),
+                                style: TextStyle(color: Color(0xFF4A3298)),
                               ),
                             ],
                           ),

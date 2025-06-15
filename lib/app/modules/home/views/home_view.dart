@@ -193,36 +193,6 @@ class DiscountBanner extends StatelessWidget {
   }
 }
 
-class Categories extends StatelessWidget {
-  const Categories({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    List<Map<String, dynamic>> categories = [
-      {"icon": flashIcon, "text": "Flash Deal"},
-      {"icon": billIcon, "text": "Bill"},
-      {"icon": gameIcon, "text": "Game"},
-      {"icon": giftIcon, "text": "Daily Gift"},
-      {"icon": discoverIcon, "text": "More"},
-    ];
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(
-          categories.length,
-          (index) => CategoryCard(
-            icon: categories[index]["icon"],
-            text: categories[index]["text"],
-            press: () {},
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
     Key? key,
@@ -421,23 +391,26 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
           ),
-        ),
-        TextButton(
-          onPressed: press,
-          style: TextButton.styleFrom(foregroundColor: Colors.grey),
-          child: const Text("See more"),
-        ),
-      ],
+          // TextButton(
+          //   onPressed: press,
+          //   style: TextButton.styleFrom(foregroundColor: Colors.grey),
+          //   child: const Text("See more"),
+          // ),
+        ],
+      ),
     );
   }
 }
@@ -465,7 +438,7 @@ class IncomingAppointments extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              "Incoming Appointments",
+              "Upcoming Appointments",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
@@ -503,10 +476,6 @@ class IncomingAppointments extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Icon(Icons.cancel, color: Colors.redAccent, size: 20),
-                      ),
                       Center(
                         child: CircleAvatar(
                           radius: 28,

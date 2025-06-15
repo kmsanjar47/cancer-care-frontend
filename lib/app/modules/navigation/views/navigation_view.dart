@@ -1,10 +1,12 @@
 import 'package:cancer_care_app/app/modules/doctors/views/doctors_view.dart';
 import 'package:cancer_care_app/app/modules/home/views/home_view.dart';
+import 'package:cancer_care_app/app/modules/navigation/views/tnm_calculator.dart';
 import 'package:cancer_care_app/app/modules/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../appointments/views/appointments_view.dart';
+import '../../prescription/views/prescription_view.dart';
 
 const Color inActiveIconColor = Color(0xFFB6B6B6);
 
@@ -27,7 +29,8 @@ class _NavigationViewState extends State<NavigationView> {
   final pages = [
     const HomeView(),
     const DoctorsView(),
-    const AppointmentsView(),
+    const TNMCalculatorPage(),
+    const AppointmentListPage(), // Placeholder for appointments
     const ProfileView(),
   ];
 
@@ -40,73 +43,62 @@ class _NavigationViewState extends State<NavigationView> {
         currentIndex: currentSelectedIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
+        type: BottomNavigationBarType.shifting,
+        enableFeedback: true,
         items: [
           BottomNavigationBarItem(
-            icon: SvgPicture.string(
-              homeIcon,
-              colorFilter: const ColorFilter.mode(
-                inActiveIconColor,
-                BlendMode.srcIn,
-              ),
+            icon: Icon(
+              Icons.home,
+              color: inActiveIconColor,
             ),
-            activeIcon: SvgPicture.string(
-              homeIcon,
-              colorFilter: const ColorFilter.mode(
-                Color(0xFFFF7643),
-                BlendMode.srcIn,
-              ),
+            activeIcon: Icon(
+              Icons.home,
+              color: Colors.deepPurple,
             ),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.string(
-              heartIcon,
-              colorFilter: const ColorFilter.mode(
-                inActiveIconColor,
-                BlendMode.srcIn,
-              ),
+            icon: Icon(
+              Icons.health_and_safety,
+              color: inActiveIconColor,
             ),
-            activeIcon: SvgPicture.string(
-              heartIcon,
-              colorFilter: const ColorFilter.mode(
-                Color(0xFFFF7643),
-                BlendMode.srcIn,
-              ),
+            activeIcon: Icon(
+              Icons.health_and_safety,
+              color: Colors.deepPurple,
             ),
-            label: "Fav",
+            label: "Doctors",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.string(
-              chatIcon,
-              colorFilter: const ColorFilter.mode(
-                inActiveIconColor,
-                BlendMode.srcIn,
-              ),
+            icon: Icon(
+              Icons.calendar_today,
+              color: inActiveIconColor,
             ),
-            activeIcon: SvgPicture.string(
-              chatIcon,
-              colorFilter: const ColorFilter.mode(
-                Color(0xFFFF7643),
-                BlendMode.srcIn,
-              ),
+            activeIcon: Icon(
+              Icons.calendar_today,
+              color: Colors.deepPurple,
             ),
-            label: "Chat",
+            label: "Appointments",
+          ),
+          // Prescription
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.note_add_rounded,
+              color: inActiveIconColor,
+            ),
+            activeIcon: Icon(
+              Icons.note_add_rounded,
+              color: Colors.deepPurple,
+            ),
+            label: "Prescription",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.string(
-              userIcon,
-              colorFilter: const ColorFilter.mode(
-                inActiveIconColor,
-                BlendMode.srcIn,
-              ),
+            icon: Icon(
+              Icons.person,
+              color: inActiveIconColor,
             ),
-            activeIcon: SvgPicture.string(
-              userIcon,
-              colorFilter: const ColorFilter.mode(
-                Color(0xFFFF7643),
-                BlendMode.srcIn,
-              ),
+            activeIcon: Icon(
+              Icons.person,
+              color: Colors.deepPurple,
             ),
             label: "Profile",
           ),

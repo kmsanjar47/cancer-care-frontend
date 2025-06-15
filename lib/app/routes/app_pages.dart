@@ -1,3 +1,4 @@
+import 'package:cancer_care_app/app/modules/navigation/views/tnm_calculator.dart';
 import 'package:get/get.dart';
 
 import '../modules/appointments/bindings/appointments_binding.dart';
@@ -11,6 +12,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/navigation/bindings/navigation_binding.dart';
 import '../modules/navigation/views/navigation_view.dart';
+import '../modules/prescription/bindings/prescription_binding.dart';
+import '../modules/prescription/views/prescription_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 
@@ -54,8 +57,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.APPOINTMENTS,
-      page: () => const AppointmentsView(),
+      page: () => const TNMCalculatorPage(),
       binding: AppointmentsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRESCRIPTION,
+      page: () => const AppointmentListPage(), // Placeholder for appointments
+      binding: PrescriptionBinding(),
     ),
   ];
 }
